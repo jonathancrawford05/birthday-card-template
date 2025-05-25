@@ -1,0 +1,19 @@
+{
+  "name": "birthday-card-template",
+  "version": "1.0.0",
+  "description": "🎉 Interactive Birthday Card Template - Customizable for any child's birthday",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "serve public",
+    "build": "echo 'Static site - no build needed'",
+    "start": "serve public",
+    "setup": "node setup.js"
+  },
+  "keywords": ["birthday", "card", "interactive", "template", "children"],
+  "author": "Birthday Card Template",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

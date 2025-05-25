@@ -1,0 +1,22 @@
+# Add placeholder images
+front-image.png
+back-image.png
+
+# Node modules
+node_modules/
+
+# Local development
+.vercel
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp

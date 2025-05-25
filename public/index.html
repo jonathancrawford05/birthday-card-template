@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎉 {{CHILD_NAME}}'s {{AGE}} Birthday Card 🎉</title>
+    <title>🎉 Jonathan's 37th Birthday Card 🎉</title>
     <style>
         :root {
-            /* 🎨 CUSTOMIZE THESE COLORS */
-            --primary-color: #FFB6C1;    /* Pink - change to child's favorite color */
-            --secondary-color: #98FB98;   /* Light Green */
-            --accent-color: #87CEEB;      /* Sky Blue */
-            --text-color: #2E8B57;        /* Dark Green */
-            --age-color: #FF6347;         /* Tomato Red */
+            --primary-color: #ff7750;
+            --secondary-color: #98FB98;
+            --accent-color: #87CEEB;
+            --text-color: #2E8B57;
+            --age-color: #FF6347;
         }
 
         * {
@@ -22,7 +21,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -32,8 +31,8 @@
         }
 
         @keyframes gradientShift {
-            0%, 100% { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%); }
-            50% { background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 50%, var(--secondary-color) 100%); }
+            0%, 100% { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+            50% { background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 50%, #16213e 100%); }
         }
 
         .card-container {
@@ -63,18 +62,62 @@
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .card-front {
-            background-image: url('front-image.png');
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
         }
 
         .card-back {
-            background-image: url('back-image.png');
+            background: linear-gradient(135deg, #0f3460, #16213e, #1a1a2e);
+            color: #00ff88;
             transform: rotateY(180deg);
+            border: 2px solid #00ff88;
+        }
+
+        .placeholder-content {
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .birthday-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px currentColor;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px currentColor; }
+            to { text-shadow: 0 0 30px currentColor, 0 0 40px currentColor; }
+        }
+
+        .age-display {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 20px 0;
+            animation: pulse 2s ease-in-out infinite;
+            color: #ffd93d;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .ai-text {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.5;
         }
 
         .falling-elements {
@@ -88,12 +131,12 @@
 
         .falling-element {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--primary-color);
-            border-radius: 50% 0 50% 0;
+            width: 8px;
+            height: 8px;
+            background: #00d4ff;
             opacity: 0.7;
             animation: fall linear infinite;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
 
         @keyframes fall {
@@ -109,13 +152,14 @@
             font-size: 1rem;
             opacity: 0.9;
             animation: blink 2s ease-in-out infinite;
-            color: var(--text-color);
+            color: #00d4ff;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.7);
             padding: 10px 20px;
             border-radius: 25px;
             z-index: 1001;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 1px solid #00d4ff;
         }
 
         @keyframes blink {
@@ -123,7 +167,6 @@
             50% { opacity: 0.5; }
         }
 
-        /* 📱 MOBILE RESPONSIVENESS */
         @media (max-width: 768px) {
             .card { 
                 height: 70vh;
@@ -142,9 +185,11 @@
             body {
                 padding: 10px;
             }
-            .card-back {
-                background-size: contain;
-                background-color: var(--secondary-color);
+            .birthday-title {
+                font-size: 1.8rem;
+            }
+            .age-display {
+                font-size: 3rem;
             }
         }
 
@@ -165,41 +210,55 @@
             body {
                 padding: 5px;
             }
-            .card-back {
-                background-size: contain;
-                background-color: var(--secondary-color);
-            }
-        }
-
-        @media (max-width: 320px) {
-            .card { 
-                height: 55vh;
-                max-height: 350px;
-                min-height: 280px;
-            }
-            .flip-instruction { 
-                font-size: 0.7rem; 
-                padding: 5px 10px;
-            }
-            .card-back {
-                background-size: contain;
-                background-color: var(--secondary-color);
-            }
         }
     </style>
 </head>
 <body>
-    <div class="falling-elements">
-        <!-- Falling elements will be generated by JavaScript -->
-    </div>
+    <div class="falling-elements"></div>
 
     <div class="card-container">
         <div class="card" id="birthdayCard">
-            <!-- Front of card - Your Custom Design -->
-            <div class="card-face card-front"></div>
+            <!-- Front of card -->
+            <div class="card-face card-front">
+                <div class="placeholder-content">
+                    <div class="birthday-title">
+                        🤖 HAPPY 37TH BIRTHDAY JONATHAN! 🤖
+                    </div>
+                    <div class="age-display">37</div>
+                    <div class="ai-text">
+                        &gt; AI.birthday_celebration(Jonathan) <br>
+                        &gt; Loading awesome year ahead... <br>
+                        &gt; 🚀 Ready for legendary adventures!
+                    </div>
+                </div>
+            </div>
 
-            <!-- Back of card - Your Custom Design -->
-            <div class="card-face card-back"></div>
+            <!-- Back of card -->
+            <div class="card-face card-back">
+                <div class="placeholder-content">
+                    <div style="font-size: 1.5rem; margin-bottom: 20px;">
+                        🎉 SYSTEM MESSAGE 🎉
+                    </div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 1.1rem; line-height: 1.6;">
+                        <strong>Hey Jonathan!</strong><br><br>
+                        
+                        Hope your 37th birthday compiles with zero errors and maximum joy!<br><br>
+                        
+                        <strong>May your year be filled with:</strong><br>
+                        🤖 AI breakthrough moments<br>
+                        💡 LLM innovations<br>
+                        🚀 Epic discoveries<br>
+                        🎂 Delicious birthday cake<br>
+                        ⭐ Awesome surprises<br><br>
+                        
+                        <strong>Ready to debug another year of awesomeness?</strong><br><br>
+                        
+                        Have the most <strong>LEGENDARY</strong> 37th birthday!<br><br>
+                        
+                        <em>// Happy Birthday, Jonathan! 🎂</em>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="flip-instruction">
@@ -208,22 +267,10 @@
     </div>
 
     <script>
-        // 🎨 CUSTOMIZE THESE SETTINGS
-        const CONFIG = {
-            childName: '{{CHILD_NAME}}',
-            age: {{AGE}},
-            fallingElementType: 'petals', // 'petals', 'stars', 'hearts', 'snowflakes'
-            fallingElementColors: ['#FFB6C1', '#FFC0CB', '#FF69B4', '#FFE4E1'],
-            enableSparkles: true,
-            animationSpeed: 400 // milliseconds between falling elements
-        };
-
-        // Interactive card flip
         document.getElementById('birthdayCard').addEventListener('click', function() {
             this.classList.toggle('flipped');
         });
 
-        // Create falling elements
         function createFallingElement() {
             const element = document.createElement('div');
             element.className = 'falling-element';
@@ -231,27 +278,8 @@
             element.style.animationDuration = (Math.random() * 4 + 3) + 's';
             element.style.animationDelay = Math.random() * 2 + 's';
             
-            // Random colors from config
-            const colors = CONFIG.fallingElementColors;
+            const colors = ['#00d4ff', '#00ff88', '#ff6b6b', '#ffd93d'];
             element.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Different shapes based on type
-            switch(CONFIG.fallingElementType) {
-                case 'hearts':
-                    element.style.borderRadius = '50% 50% 0 0';
-                    element.style.transform = 'rotate(45deg)';
-                    break;
-                case 'stars':
-                    element.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
-                    element.style.borderRadius = '0';
-                    break;
-                case 'snowflakes':
-                    element.style.borderRadius = '50%';
-                    element.style.background = '#FFFFFF';
-                    break;
-                default: // petals
-                    element.style.borderRadius = '50% 0 50% 0';
-            }
             
             document.querySelector('.falling-elements').appendChild(element);
             
@@ -260,17 +288,14 @@
             }, 7000);
         }
 
-        // Generate falling elements continuously
-        setInterval(createFallingElement, CONFIG.animationSpeed);
+        setInterval(createFallingElement, 400);
 
-        // Keyboard interaction
         document.addEventListener('keydown', function(e) {
             if (e.key === ' ' || e.key === 'Enter') {
                 document.getElementById('birthdayCard').classList.toggle('flipped');
             }
         });
 
-        // Touch gesture support for mobile
         let touchStartX = 0;
         document.addEventListener('touchstart', function(e) {
             touchStartX = e.touches[0].clientX;
@@ -285,43 +310,36 @@
             }
         });
 
-        // Optional sparkle effects
-        if (CONFIG.enableSparkles) {
-            function createSparkle() {
-                const sparkle = document.createElement('div');
-                sparkle.style.position = 'absolute';
-                sparkle.style.width = '4px';
-                sparkle.style.height = '4px';
-                sparkle.style.background = '#FFD700';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.animation = 'sparkle 2s ease-in-out infinite';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.zIndex = '1000';
-                
-                document.querySelector('.falling-elements').appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 2000);
-            }
-
-            // Add sparkle animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes sparkle {
-                    0%, 100% { opacity: 0; transform: scale(0); }
-                    50% { opacity: 1; transform: scale(1); }
-                }
-            `;
-            document.head.appendChild(style);
-
-            setInterval(createSparkle, 2000);
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'absolute';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.background = '#00d4ff';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animation = 'sparkle 2s ease-in-out infinite';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            
+            document.querySelector('.falling-elements').appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
         }
 
-        // Update page title dynamically
-        document.title = `🎉 ${CONFIG.childName}'s ${CONFIG.age} Birthday Card 🎉`;
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0%, 100% { opacity: 0; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        setInterval(createSparkle, 1500);
     </script>
 </body>
 </html>
